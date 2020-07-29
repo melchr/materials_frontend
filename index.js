@@ -5,9 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function getMaterials() {
-    fetch(materialIndex)
+    fetch(materialIndex) //get request
     .then(response => response.json())
     .then(materials => {
-        console.log(materials)
+        materials.data.forEach(material => {
+            const materialMarkup = `
+            <div data-id=${material.id}>
+                <h3>${material.attributes.name}</h3>
+                <p>${material.attributes.description}</p>
+                <button data-id=${material.id}>edit</button>
+            </div>
+            <br><br>`
+
+            document.querySelector('#material-container').innerHTML += materialMarkup
+        })
     })
 }
