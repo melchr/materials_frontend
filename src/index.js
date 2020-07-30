@@ -12,6 +12,7 @@ function getMaterials() {
             const materialMarkup = `
             <div data-id=${material.id}>
                 <h3>${material.attributes.name}</h3>
+                <p><small><a href="${material.attributes.url}">${material.attributes.url}</a></small></p>
                 <p>${material.attributes.description}</p>
                 <button data-id=${material.id}>edit</button>
             </div>
