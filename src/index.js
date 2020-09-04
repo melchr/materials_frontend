@@ -35,5 +35,10 @@ function createFormHandler(e) { //grabs all values of materials submitted by use
     const titleInput = document.querySelector('#input-title').value
     const descriptionInput = document.querySelector('#input-description').value
     const urlInput = document.querySelector('#input-url').value
-    const categoryInput = document.querySelector('#categories').value
+    const categoryId = parseInt(document.querySelector('#categories').value)
+    postFetch(titleInput, descriptionInput, urlInput, categoryId)
+}
+
+function postFetch(title, description, url, category_id) {
+    
 }
