@@ -30,7 +30,10 @@ function getMaterials() {
     })
 }
 
-function createFormHandler(e) {
+function createFormHandler(e) { //grabs all values of materials submitted by user
     e.preventDefault()
-    console.log(e)
+    const titleInput = document.querySelector('#input-title').value
+    const descriptionInput = document.querySelector('#input-description').value
+    const urlInput = document.querySelector('#input-url').value
+    const categoryInput = document.querySelector('#categories').value
 }
