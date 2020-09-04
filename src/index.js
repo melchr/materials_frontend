@@ -2,6 +2,11 @@ const materialIndex = "http://localhost:3000/api/v1/materials"
 
 document.addEventListener('DOMContentLoaded', () => {
     getMaterials()
+
+    const createMaterialForm = document.querySelector("#create-material-form")
+
+    createMaterialForm.addEventListener("submit", (e) => createFormHandler(e))
+
 })
 
 function getMaterials() {
@@ -21,5 +26,6 @@ function getMaterials() {
 
             document.querySelector('#material-container').innerHTML += materialMarkup
         })
+        // want to create category cards, where each resource populates in each category card once added //
     })
 }
