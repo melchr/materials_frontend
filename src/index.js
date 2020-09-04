@@ -40,6 +40,19 @@ function createFormHandler(e) { //grabs all values of materials submitted by use
 }
 
 function postFetch(name, description, url, category_id) {
-    
+    fetch(materialIndex, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            name: name,
+            description: description,
+            url: url,
+            category_id: category_id
+        })
+    })
+    .then(response => response.json())
+    .then(material => {
+        console.log(material)
+    })
     
 }
