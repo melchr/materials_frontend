@@ -9,6 +9,7 @@ function getMaterials() {
     .then(response => response.json())
     .then(materials => {
         materials.data.forEach(material => {
+    
             const materialMarkup = `
             <div data-id=${material.id}>
                 <h3>${material.attributes.name}</h3>
