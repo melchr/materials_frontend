@@ -1,6 +1,7 @@
 const materialIndex = "http://localhost:3000/api/v1/materials"
 
 document.addEventListener('DOMContentLoaded', () => {
+    //fetch and load materials
     getMaterials()
 
     const createMaterialForm = document.querySelector("#create-material-form")
@@ -14,8 +15,14 @@ function getMaterials() {
     .then(response => response.json())
     .then(materials => {
         materials.data.forEach(material => {
-    
-            const materialMarkup = `
+            render(material)
+        })
+        // want to create category cards, where each resource populates in each category card once added //
+    })
+}
+
+function render(material) {
+    const materialMarkup = `
             <div data-id=${material.id}>
                 <h3>${material.attributes.name}</h3>
                 <p><small><a href="${material.attributes.url}">${material.attributes.url}</a></small></p>
@@ -25,9 +32,6 @@ function getMaterials() {
             <br><br>`
 
             document.querySelector('#material-container').innerHTML += materialMarkup
-        })
-        // want to create category cards, where each resource populates in each category card once added //
-    })
 }
 
 function createFormHandler(e) { //grabs all values of materials submitted by user
@@ -48,17 +52,9 @@ function postFetch(name, description, url, category_id) {
     })
     .then(response => response.json())
     .then(material => {
+        console.log(material)
         const materialData = material.data
-        const materialMarkup = `
-        <div data-id=${material.id}>
-            <p>${materialData.attributes.url}>
-            <h3>${materialData.attributes.name}</h3>
-            <p>${materialData.attributes.category.name}</p>
-            <button data-id=${materialData.id}>edit</button>
-        </div>
-        <br><br>`
-
-        document.querySelector('#material-container').innerHTML += materialMarkup
+        render(materialData)
     })
     
 }
