@@ -29,3 +29,8 @@ function getMaterials() {
         // want to create category cards, where each resource populates in each category card once added //
     })
 }
+
+function createFormHandler(e) {
+    e.preventDefault()
+    console.log(e)
+}
