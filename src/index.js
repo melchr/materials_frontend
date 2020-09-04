@@ -32,13 +32,14 @@ function getMaterials() {
 
 function createFormHandler(e) { //grabs all values of materials submitted by user
     e.preventDefault()
-    const titleInput = document.querySelector('#input-title').value
+    const nameInput = document.querySelector('#input-name').value
     const descriptionInput = document.querySelector('#input-description').value
     const urlInput = document.querySelector('#input-url').value
     const categoryId = parseInt(document.querySelector('#categories').value)
-    postFetch(titleInput, descriptionInput, urlInput, categoryId)
+    postFetch(nameInput, descriptionInput, urlInput, categoryId)
 }
 
-function postFetch(title, description, url, category_id) {
+function postFetch(name, description, url, category_id) {
+    
     
 }
