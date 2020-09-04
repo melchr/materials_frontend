@@ -40,19 +40,25 @@ function createFormHandler(e) { //grabs all values of materials submitted by use
 }
 
 function postFetch(name, description, url, category_id) {
+    const bodyData = {name, description, url, category_id}
     fetch(materialIndex, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            name: name,
-            description: description,
-            url: url,
-            category_id: category_id
-        })
+        body: JSON.stringify(bodyData)
     })
     .then(response => response.json())
     .then(material => {
-        console.log(material)
+        const materialData = material.data
+        const materialMarkup = `
+        <div data-id=${material.id}>
+            <p>${materialData.attributes.url}>
+            <h3>${materialData.attributes.name}</h3>
+            <p>${materialData.attributes.category.name}</p>
+            <button data-id=${materialData.id}>edit</button>
+        </div>
+        <br><br>`
+
+        document.querySelector('#material-container').innerHTML += materialMarkup
     })
     
 }
