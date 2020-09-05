@@ -42,6 +42,7 @@ function createFormHandler(e) { //grabs all values of materials submitted by use
 function postFetch(name, description, url, category_name, category_id) {
     const bodyData = {name, description, url, category_name, category_id}
     // i don't think i have access to the category name here, but i don't really need it?
+    // I also don't have access to the data or attributes array/object
     fetch(materialIndex, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
