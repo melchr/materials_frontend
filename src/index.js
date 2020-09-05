@@ -34,12 +34,13 @@ function createFormHandler(e) { //grabs all values of materials submitted by use
     const nameInput = document.querySelector('#input-name').value
     const descriptionInput = document.querySelector('#input-description').value
     const urlInput = document.querySelector('#input-url').value
+    const categoryName = document.querySelector('#categories').value
     const categoryId = parseInt(document.querySelector('#categories').value)
-    postFetch(nameInput, descriptionInput, urlInput, categoryId)
+    postFetch(nameInput, descriptionInput, urlInput, categoryName, categoryId)
 }
 
-function postFetch(name, description, url, category_id) {
-    const bodyData = {name, description, url, category_id}
+function postFetch(name, description, url, category_name, category_id) {
+    const bodyData = {name, description, url, category_name, category_id}
     fetch(materialIndex, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -47,17 +48,17 @@ function postFetch(name, description, url, category_id) {
     })
     .then(response => response.json())
     .then(material => {
-        const materialData = material.data
         console.log(material)
         const materialMarkup = `
         <div data-id=${material.id}>
-            <h3>${materialData.attributes.name}</h3>
-            <p>${materialData.attributes.url}>
-            <p>${materialData.attributes.category.name}</p>
-            <button data-id=${materialData.id}>edit</button>
+            <h3>${material.name}</h3>
+            <p><small><a href="${material.url}">${material.url}</a></small></p>
+            <p>${material.category_id}</p>
+            <button data-id=${material.id}>edit</button>
         </div>
         <br><br>`
         document.querySelector('#material-container').innerHTML += materialMarkup
     })
+
     
 }
