@@ -1,7 +1,6 @@
 const materialIndex = "http://localhost:3000/api/v1/materials"
 
 document.addEventListener('DOMContentLoaded', () => {
-    //fetch and load materials
     getMaterials()
 
     const createMaterialForm = document.querySelector("#create-material-form")
@@ -49,7 +48,6 @@ function postFetch(name, description, url, category_id) {
     })
     .then(response => response.json())
     .then(material => {
-        console.log(material)
         const materialData = material.data
         const materialMarkup = `
         <div data-id=${material.id}>
