@@ -17,8 +17,8 @@ function getMaterials() {
             const materialMarkup = `
             <div data-id=${material.id}>
                 <h3>${material.attributes.name}</h3>
-                <p><small><a href="${material.attributes.url}">${material.attributes.url}</a></small></p>
                 <p>${material.attributes.description}</p>
+                <p><small><a href="${material.attributes.url}">${material.attributes.url}</a></small></p>
                 <button data-id=${material.id}>edit</button>
             </div>
             <br><br>`
@@ -41,6 +41,7 @@ function createFormHandler(e) { //grabs all values of materials submitted by use
 
 function postFetch(name, description, url, category_name, category_id) {
     const bodyData = {name, description, url, category_name, category_id}
+    // i don't think i have access to the category name here, but i don't really need it?
     fetch(materialIndex, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -52,8 +53,8 @@ function postFetch(name, description, url, category_name, category_id) {
         const materialMarkup = `
         <div data-id=${material.id}>
             <h3>${material.name}</h3>
+            <p>${material.description}</p>
             <p><small><a href="${material.url}">${material.url}</a></small></p>
-            <p>${material.category_id}</p>
             <button data-id=${material.id}>edit</button>
         </div>
         <br><br>`
