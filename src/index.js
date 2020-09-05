@@ -14,7 +14,6 @@ function getMaterials() {
     .then(response => response.json())
     .then(materials => {
         materials.data.forEach(material => {
-    
             const materialMarkup = `
             <div data-id=${material.id}>
                 <h3>${material.attributes.name}</h3>
@@ -49,15 +48,15 @@ function postFetch(name, description, url, category_id) {
     .then(response => response.json())
     .then(material => {
         const materialData = material.data
+        console.log(material)
         const materialMarkup = `
         <div data-id=${material.id}>
-            <p>${materialData.attributes.url}>
             <h3>${materialData.attributes.name}</h3>
+            <p>${materialData.attributes.url}>
             <p>${materialData.attributes.category.name}</p>
             <button data-id=${materialData.id}>edit</button>
         </div>
         <br><br>`
-
         document.querySelector('#material-container').innerHTML += materialMarkup
     })
     
