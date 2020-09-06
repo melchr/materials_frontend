@@ -62,5 +62,6 @@ function postFetch(name, description, url, category_name, category_id) {
         document.querySelector('#material-container').innerHTML += materialMarkup
     })
 
+    //patch or delete request
     
 }
