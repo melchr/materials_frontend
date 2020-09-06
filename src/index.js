@@ -17,27 +17,12 @@ function getMaterials() {
     .then(response => response.json())
     .then(materials => {
         materials.data.forEach(material => {
-
-            let newMaterial = new Material(material)
-            //creating new instance of material class
-
-            render(material)
+            let newMaterial = new Material(material, material.attributes)
+            //creating new instance of material class, goes to constructor and gets pushed into an array
+            document.querySelector('#material-container').innerHTML += newMaterial.renderMaterialCard()
         })
         // want to create category cards, where each resource populates in each category card once added //
     })
-}
-
-function render(material) {
-    const materialMarkup = `
-    <div data-id=${material.id}>
-        <h3>${material.attributes.name}</h3>
-        <p>${material.attributes.description}</p>
-        <p><small><a href="${material.attributes.url}">${material.attributes.url}</a></small></p>
-        <p>${material.attributes.category.title}</p>
-        <button data-id=${material.id}>edit</button>
-    </div>
-    <br><br>`
-    document.querySelector('#material-container').innerHTML += materialMarkup
 }
 
 function createFormHandler(e) { //grabs all values of materials submitted by user
@@ -59,7 +44,9 @@ function postFetch(name, description, url, category_id) {
     .then(response => response.json())
     .then(material => {
         const materialData = material.data
-        render(materialData)
+        let newMaterial = new Material(materialData, materialData.attributes)
+        
+        document.querySelector('#material-container').innerHTML += newMaterial.renderMaterialCard()
     })
 
     //patch or delete request
