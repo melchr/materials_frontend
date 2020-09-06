@@ -21,20 +21,23 @@ function getMaterials() {
             let newMaterial = new Material(material)
             //creating new instance of material class
 
-            const materialMarkup = `
-            <div data-id=${material.id}>
-                <h3>${material.attributes.name}</h3>
-                <p>${material.attributes.description}</p>
-                <p><small><a href="${material.attributes.url}">${material.attributes.url}</a></small></p>
-                <p>${material.attributes.category.title}</p>
-                <button data-id=${material.id}>edit</button>
-            </div>
-            <br><br>`
-
-            document.querySelector('#material-container').innerHTML += materialMarkup
+            render(material)
         })
         // want to create category cards, where each resource populates in each category card once added //
     })
+}
+
+function render(material) {
+    const materialMarkup = `
+    <div data-id=${material.id}>
+        <h3>${material.attributes.name}</h3>
+        <p>${material.attributes.description}</p>
+        <p><small><a href="${material.attributes.url}">${material.attributes.url}</a></small></p>
+        <p>${material.attributes.category.title}</p>
+        <button data-id=${material.id}>edit</button>
+    </div>
+    <br><br>`
+    document.querySelector('#material-container').innerHTML += materialMarkup
 }
 
 function createFormHandler(e) { //grabs all values of materials submitted by user
@@ -42,16 +45,12 @@ function createFormHandler(e) { //grabs all values of materials submitted by use
     const nameInput = document.querySelector('#input-name').value
     const descriptionInput = document.querySelector('#input-description').value
     const urlInput = document.querySelector('#input-url').value
-    //const categoryTitle = document.querySelector('#categories').value
     const categoryId = parseInt(document.querySelector('#categories').value)
     postFetch(nameInput, descriptionInput, urlInput, categoryId)
 }
 
 function postFetch(name, description, url, category_id) {
-    console.log(name, description, url, category_id)
     const bodyData = {name, description, url, category_id}
-    // i don't think i have access to the category name here, but i don't really need it?
-    // I also don't have access to the data or attributes array/object
     fetch(materialIndex, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -59,7 +58,6 @@ function postFetch(name, description, url, category_id) {
     })
     .then(response => response.json())
     .then(material => {
-        console.log(material)
         const materialData = material.data
         const materialMarkup = `
         <div data-id=${material.id}>
