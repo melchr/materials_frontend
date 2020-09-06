@@ -19,6 +19,7 @@ function getMaterials() {
                 <h3>${material.attributes.name}</h3>
                 <p>${material.attributes.description}</p>
                 <p><small><a href="${material.attributes.url}">${material.attributes.url}</a></small></p>
+                <p>${material.attributes.category.name}</p>
                 <button data-id=${material.id}>edit</button>
             </div>
             <br><br>`
