@@ -20,6 +20,9 @@ class Material {
             <br><br>`
     }
 
+    static findById(id) {
+        return this.all.find(material => material.id === id)
+    }
 }
 
 Material.all = []
