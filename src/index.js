@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createMaterialForm.addEventListener("submit", (e) => createFormHandler(e))
 
-
+    const materialContainer = document.querySelector('#material-container')
+    materialContainer.addEventListener('click', e => {
+        console.log('clicked')
+    })
 
 })
 
