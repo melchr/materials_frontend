@@ -59,16 +59,7 @@ function postFetch(name, description, url, category_id) {
     .then(response => response.json())
     .then(material => {
         const materialData = material.data
-        const materialMarkup = `
-        <div data-id=${material.id}>
-            <h3>${materialData.attributes.name}</h3>
-            <p>${materialData.attributes.description}</p>
-            <p><small><a href="${materialData.attributes.url}">${materialData.attributes.url}</a></small></p>
-            <p>${materialData.attributes.category.title}</p>
-            <button data-id=${material.id}>edit</button>
-        </div>
-        <br><br>`
-        document.querySelector('#material-container').innerHTML += materialMarkup
+        render(materialData)
     })
 
     //patch or delete request
