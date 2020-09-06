@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     createMaterialForm.addEventListener("submit", (e) => createFormHandler(e))
 
+
+
 })
 
 function getMaterials() {
@@ -40,14 +42,14 @@ function createFormHandler(e) { //grabs all values of materials submitted by use
     const nameInput = document.querySelector('#input-name').value
     const descriptionInput = document.querySelector('#input-description').value
     const urlInput = document.querySelector('#input-url').value
-    const categoryTitle = document.querySelector('#categories').value
+    //const categoryTitle = document.querySelector('#categories').value
     const categoryId = parseInt(document.querySelector('#categories').value)
-    postFetch(nameInput, descriptionInput, urlInput, categoryTitle, categoryId)
+    postFetch(nameInput, descriptionInput, urlInput, categoryId)
 }
 
-function postFetch(name, description, url, title, category_id) {
-    console.log(name, description, url, title, category_id)
-    const bodyData = {name, description, url, title, category_id}
+function postFetch(name, description, url, category_id) {
+    console.log(name, description, url, category_id)
+    const bodyData = {name, description, url, category_id}
     // i don't think i have access to the category name here, but i don't really need it?
     // I also don't have access to the data or attributes array/object
     fetch(materialIndex, {
@@ -58,11 +60,13 @@ function postFetch(name, description, url, title, category_id) {
     .then(response => response.json())
     .then(material => {
         console.log(material)
+        const materialData = material.data
         const materialMarkup = `
         <div data-id=${material.id}>
-            <h3>${material.name}</h3>
-            <p>${material.description}</p>
-            <p><small><a href="${material.url}">${material.url}</a></small></p>
+            <h3>${materialData.attributes.name}</h3>
+            <p>${materialData.attributes.description}</p>
+            <p><small><a href="${materialData.attributes.url}">${materialData.attributes.url}</a></small></p>
+            <p>${materialData.attributes.category.title}</p>
             <button data-id=${material.id}>edit</button>
         </div>
         <br><br>`
