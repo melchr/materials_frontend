@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const materialContainer = document.querySelector('#material-container')
     materialContainer.addEventListener('click', e => {
         //debugger
-        const id = parseInt(e.target.dataset.id)
+        const id = parseInt(e.target.closest('[data-id]').dataset.id)
         const material = Material.findById(id)
         console.log(material)
     })
