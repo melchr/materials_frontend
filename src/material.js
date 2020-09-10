@@ -21,7 +21,7 @@ class Material {
     }
 
     static findById(id) {
-        return this.all.find(material => material.id === id)
+        return this.all.find(material => material.id == id)
     }
 
 
