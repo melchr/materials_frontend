@@ -68,3 +68,16 @@ function postFetch(name, description, url, category_id) {
     })
 }
 
+function patchMaterial(material, name, description, url, category_id) {
+    const patchJSON = {name, description, url, category_id}
+    fetch(`http://localhost:3000/api/v1/materials/${material.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+        },
+        body: JSON.stringify(patchJSON),
+    })
+    .then(response => response.json())
+    .then(response => console.log(response));
+}
