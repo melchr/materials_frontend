@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#edit-material').innerHTML = material.renderPatchForm()
         console.log(material)
     })
-    
+    document.querySelector('#edit-material').addEventListener('submit', e => updateForm(e))
 })
 
 function getMaterials() {
