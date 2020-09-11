@@ -13,9 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
         //debugger
         const id = parseInt(e.target.closest('[data-id]').dataset.id)
         const material = Material.findById(id)
+        document.querySelector('#edit-material').innerHTML = material.renderPatchForm()
         console.log(material)
     })
-
+    
 })
 
 function getMaterials() {
@@ -40,6 +41,17 @@ function createFormHandler(e) { //grabs all values of materials submitted by use
     postFetch(nameInput, descriptionInput, urlInput, categoryId)
 }
 
+function updateForm(e) {
+    e.preventDefault()
+    const id = parseInt(e.target.closest('[data-id]').dataset.id)
+    const material = Material.findById(id)
+    const name = e.target.querySelector('#input-name').value
+    const description = e.target.querySelector('#input-description').value
+    const url = e.target.querySelector('#input-url').value
+    const category_id = parseInt(e.target.querySelector('#categories').value)
+    patchMaterial(material, name, description, url, category_id)
+}
+
 function postFetch(name, description, url, category_id) {
     const bodyData = {name, description, url, category_id}
     fetch(materialIndex, {
@@ -54,7 +66,5 @@ function postFetch(name, description, url, category_id) {
         
         document.querySelector('#material-container').innerHTML += newMaterial.renderMaterialCard()
     })
-
-    //patch or delete request
-    
 }
+
