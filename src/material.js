@@ -28,7 +28,7 @@ class Material {
     renderPatchForm() {
         return `
             <form data-id=${this.id} >
-                <h3>Edit the Resource</h3>
+                <h2>Edit the Resource</h2>
 
                 <label>Name</label>
                 <input id='input-name' type="text" name="name" value="${this.name}" class="input-name">
@@ -57,7 +57,7 @@ class Material {
                 </select>
                 <br><br>
 
-                <input id='edit-button' type="submit" name="submit" value="Edit Material" class="submit">
+                <input id='edit-button' type="submit" name="submit" value="Edit Resource" class="submit">
             </form> `
   }
 }
