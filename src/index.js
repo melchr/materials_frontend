@@ -63,7 +63,6 @@ function postFetch(name, description, url, category_id) {
     .then(material => {
         const materialData = material.data
         let newMaterial = new Material(materialData, materialData.attributes)
-        
         document.querySelector('#material-container').innerHTML += newMaterial.renderMaterialCard()
     })
 }
@@ -79,5 +78,10 @@ function patchMaterial(material, name, description, url, category_id) {
         body: JSON.stringify(patchJSON),
     })
     .then(response => response.json())
-    .then(response => console.log(response));
+    .then(material => {
+        const materialData = material.data
+        //debugger
+        let newMaterial = Material(materialData, materialData.attributes)
+        document.querySelector('#material-container').innerHTML += newMaterial.renderMaterialCard()
+    })
 }
