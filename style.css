@@ -1,0 +1,13 @@
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding:20px;
+}
+
+a:link {
+    color: #080c42;
+  }
+
+a:visited {
+    color: #080c42;
+}
+
