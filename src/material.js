@@ -58,6 +58,7 @@ class Material {
                 <br><br>
 
                 <input id='edit-button' type="submit" name="submit" value="Edit Resource" class="submit">
+                <input id='delete-button' type="button" name="delete" value="Delete Resource" class="delete">
             </form> `
   }
 }

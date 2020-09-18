@@ -15,8 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const material = Material.findById(id)
         document.querySelector('#edit-material').innerHTML = material.renderPatchForm()
         console.log(material)
+        document.querySelector('#edit-material').addEventListener('submit', e => updateForm(e))
+        const materialDelete = document.querySelector('#delete-button').addEventListener('click', e => deleteMaterial(e))
     })
-    document.querySelector('#edit-material').addEventListener('submit', e => updateForm(e))
+
 })
 
 function getMaterials() {
@@ -25,14 +27,14 @@ function getMaterials() {
     .then(materials => {
         materials.data.forEach(material => {
             let newMaterial = new Material(material, material.attributes)
-            //creating new instance of material class, goes to constructor and gets pushed into an array
+
             document.querySelector('#material-container').innerHTML += newMaterial.renderMaterialCard()
         })
         // want to create category cards, where each resource populates in each category card once added //
     })
 }
 
-function createFormHandler(e) { //grabs all values of materials submitted by user
+function createFormHandler(e) { 
     e.preventDefault()
     const nameInput = document.querySelector('#input-name').value
     const descriptionInput = document.querySelector('#input-description').value
@@ -84,4 +86,13 @@ function patchMaterial(material, name, description, url, category_id) {
         let newMaterial = Material(materialData, materialData.attributes)
         document.querySelector('#material-container').innerHTML += newMaterial.renderMaterialCard()
     })
+}
+
+function deleteMaterial(material) {
+    debugger
+    console.log(material)
+    fetch(`http://localhost:3000/api/v1/materials/${material.id}`, {
+        method: "DELETE"
+    })
+    .then(response => response.json());
 }
