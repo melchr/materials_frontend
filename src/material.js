@@ -15,7 +15,7 @@ class Material {
             <p>${this.description}</p>
             <p><small><a href="${this.url}">${this.url}</a></small></p>
             <p>${this.category.title}</p>
-            <button data-id=${this.id}>edit</button>
+            <button id="update-button" data-id="${this.id}">edit</button>
             </div>
             <br><br>`
     }
@@ -58,7 +58,8 @@ class Material {
                 <br><br>
 
                 <input id='edit-button' type="submit" name="submit" value="Edit Resource" class="submit">
-                <input id='delete-button' type="button" name="delete" value="Delete Resource" class="delete">
+                <input id="delete-button" data-id="${this.id}" type="submit" name="delete" value="Delete" class="submit">
+
             </form> `
   }
 }
